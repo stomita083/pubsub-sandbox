@@ -1,0 +1,163 @@
+{
+    "rabbit_version": "3.8.11",
+    "users": [
+        {
+            "name": "admin",
+            "password_hash": "JiwvojcFj58iSAB24KkD6xat25K8cem9eJSj5DUcIF9J9juE",
+            "hashing_algorithm": "rabbit_password_hashing_sha256",
+            "tags": "administrator"
+        },
+        {
+            "name": "app-user",
+            "password_hash": "JiwvojcFj58iSAB24KkD6xat25K8cem9eJSj5DUcIF9J9juE",
+            "hashing_algorithm": "rabbit_password_hashing_sha256",
+            "tags": "management"
+        }
+    ],
+    "vhosts": [
+        {
+            "name": "my-vhost"
+        }
+    ],
+    "permissions": [
+        {
+            "user": "admin",
+            "vhost": "my-vhost",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        },
+        {
+            "user": "app-user",
+            "vhost": "my-vhost",
+            "configure": "",
+            "write": "(exchange|exchange\\.delay)",
+            "read": "(charge\\..*|exchange\\.dead)"
+        }
+    ],
+    "topic_permissions": [],
+    "parameters": [],
+    "global_parameters": [],
+    "policies": [
+        {
+            "vhost": "my-vhost",
+            "name": "queue-policy",
+            "pattern": ".*",
+            "apply-to": "queues",
+            "definition": {
+                "dead-letter-exchange": "exchange.dead"
+            },
+            "priority": 0
+        }
+    ],
+    "queues": [
+        {
+            "name": "charge",
+            "vhost": "my-vhost",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "point",
+            "vhost": "my-vhost",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "mail",
+            "vhost": "my-vhost",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        }
+    ],
+    "exchanges": [
+        {
+            "name": "exchange",
+            "vhost": "my-vhost",
+            "type": "direct",
+            "durable": true,
+            "auto_delete": false,
+            "internal": false,
+            "arguments": {}
+        },
+        {
+            "name": "exchange.dead",
+            "vhost": "my-vhost",
+            "type": "fanout",
+            "durable": true,
+            "auto_delete": false,
+            "internal": false,
+            "arguments": {}
+        },
+        {
+            "name": "exchange.delay",
+            "vhost": "my-vhost",
+            "type": "x-delayed-message",
+            "durable": true,
+            "auto_delete": false,
+            "internal": false,
+            "arguments": { "x-delayed-type": "direct" }
+        }
+    ],
+    "bindings": [
+        {
+            "source": "exchange",
+            "vhost": "my-vhost",
+            "destination": "charge",
+            "destination_type": "queue",
+            "routing_key": "charge.create",
+            "arguments": {}
+        },
+        {
+            "source": "exchange",
+            "vhost": "my-vhost",
+            "destination": "point",
+            "destination_type": "queue",
+            "routing_key": "charge.point",
+            "arguments": {}
+        },
+        {
+            "source": "exchange",
+            "vhost": "my-vhost",
+            "destination": "mail",
+            "destination_type": "queue",
+            "routing_key": "charge.mail",
+            "arguments": {}
+        },
+        {
+            "source": "exchange.dead",
+            "vhost": "my-vhost",
+            "destination": "exchange.dead",
+            "destination_type": "queue",
+            "routing_key": "",
+            "arguments": {}
+        },
+        {
+            "source": "exchange.delay",
+            "vhost": "my-vhost",
+            "destination": "charge.create",
+            "destination_type": "queue",
+            "routing_key": "charge.create",
+            "arguments": {}
+        },
+        {
+            "source": "exchange.delay",
+            "vhost": "my-vhost",
+            "destination": "charge.point",
+            "destination_type": "queue",
+            "routing_key": "charge.point",
+            "arguments": {}
+        },
+        {
+            "source": "exchange.delay",
+            "vhost": "my-vhost",
+            "destination": "charge.mail",
+            "destination_type": "queue",
+            "routing_key": "charge.mail",
+            "arguments": {}
+        }
+    ]
+}

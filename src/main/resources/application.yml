@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: pubsub-sandbox
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: app-user
+    password: admin
+    virtual-host: my-vhost
+
+rabbitmq:
+  charge:
+    exchange: exchange
+    routing_key: charge.create

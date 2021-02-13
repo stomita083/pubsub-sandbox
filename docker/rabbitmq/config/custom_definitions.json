@@ -30,9 +30,9 @@
         {
             "user": "app-user",
             "vhost": "my-vhost",
-            "configure": "",
+            "configure": ".*",
             "write": "(exchange|exchange\\.delay)",
-            "read": "(charge\\..*|exchange\\.dead)"
+            "read": "(charge|point|mail|exchange\\.dead)"
         }
     ],
     "topic_permissions": [],
@@ -67,6 +67,13 @@
         },
         {
             "name": "mail",
+            "vhost": "my-vhost",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "exchange.dead",
             "vhost": "my-vhost",
             "durable": true,
             "auto_delete": false,

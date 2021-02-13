@@ -10,5 +10,7 @@ spring:
 
 rabbitmq:
   charge:
-    exchange: exchange
-    routing_key: charge.create
+    queue-name: charge 
+
+server:
+  port: 8081

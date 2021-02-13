@@ -1,4 +1,4 @@
-package com.sora.mq.pubsubsandbox.application
+package com.sora.mq.pubsubsandbox.producer.application
 
 import lombok.Builder
 import lombok.Data

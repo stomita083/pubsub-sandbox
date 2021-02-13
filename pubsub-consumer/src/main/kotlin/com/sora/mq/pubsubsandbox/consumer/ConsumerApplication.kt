@@ -1,11 +1,11 @@
-package com.sora.mq.pubsubsandbox
+package com.sora.mq.pubsubsandbox.consumer
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class Application
+class ConsumerApplication
 
 fun main(args: Array<String>) {
-    runApplication<Application>(*args)
+    runApplication<ConsumerApplication>(*args)
 }

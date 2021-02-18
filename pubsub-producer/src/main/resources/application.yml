@@ -12,3 +12,9 @@ rabbitmq:
   charge:
     exchange: exchange
     routing_key: charge.create
+  point:
+    exchange: exchange
+    routing_key: charge.point
+  mail:
+    exchange: exchange
+    routing_key: charge.mail

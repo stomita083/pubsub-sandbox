@@ -6,18 +6,18 @@ import org.springframework.messaging.handler.annotation.Payload
 import org.springframework.stereotype.Component
 
 @Component
-class ChargeListener(private val mqConsumer: MqConsumer) {
+class PointListener(private val mqConsumer: MqConsumer) {
 
     companion object {
         val log = org.slf4j.LoggerFactory.getLogger(this::class.java.enclosingClass)!!
     }
 
     @RabbitListener(
-        queues = ["\${rabbitmq.charge.queue-name:charge}"],
+        queues = ["\${rabbitmq.charge.queue-name:point}"],
         containerFactory = "rabbitListenerContainerFactory"
     )
     fun listenMessage(@Payload message: String) {
-        log.info("consume charge message: $log")
-        mqConsumer.consumeCharge(message)
+        log.info("consume point message: $log")
+        mqConsumer.consumePoint(message)
     }
 }

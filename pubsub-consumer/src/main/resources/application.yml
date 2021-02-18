@@ -11,6 +11,10 @@ spring:
 rabbitmq:
   charge:
     queue-name: charge 
+  point:
+    queue-name: point
+  mail:
+    queue-name: mail
 
 server:
   port: 8081

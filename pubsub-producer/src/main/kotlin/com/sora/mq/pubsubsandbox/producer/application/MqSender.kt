@@ -12,7 +12,7 @@ class MqSender(private val chargeAmqpTemplate: AmqpTemplate) {
         val log = org.slf4j.LoggerFactory.getLogger(this::class.java.enclosingClass)!!
     }
 
-    fun produce() {
+    fun produceCharge() {
         val message = ChargeMessage("user001", 1000, 100, "シネマチケット", "TICKET")
         log.info("START sending message: $message")
         //chargeAmqpTemplate.convertAndSend(message)

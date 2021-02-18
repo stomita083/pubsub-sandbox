@@ -9,9 +9,21 @@ class MqConsumer {
         val log = org.slf4j.LoggerFactory.getLogger(this::class.java.enclosingClass)!!
     }
 
-    fun consume(message: String) {
+    fun consumeCharge(message: String) {
         log.info("START consuming message: $message")
         log.warn("charge data has created!!!")
+        log.info("COMPLETE consuming message: $message")
+    }
+
+    fun consumePoint(message: String) {
+        log.info("START consuming message: $message")
+        log.warn("point data has created!!!")
+        log.info("COMPLETE consuming message: $message")
+    }
+
+    fun consumeMail(message: String) {
+        log.info("START consuming message: $message")
+        log.warn("mail data has created!!!")
         log.info("COMPLETE consuming message: $message")
     }
 }

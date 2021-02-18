@@ -15,15 +15,15 @@ class ConsumerConfig {
     @Value("\${rabbitmq.charge.queue-name}")
     var queueName: String? = null
 
-    @Bean
-    fun queue(): Queue {
-        return Queue(queueName, true)
-    }
-
-    @Bean
-    fun dlqQueue(): Queue {
-        return Queue("exchange.dead", true)
-    }
+//    @Bean
+//    fun queue(): Queue {
+//        return Queue(queueName, true)
+//    }
+//
+//    @Bean
+//    fun dlqQueue(): Queue {
+//        return Queue("exchange.dead", true)
+//    }
 
     // Ref: https://blog.mookjp.io/memo/spring-amqp%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9/#message%E3%81%AE%E5%8F%97%E4%BF%A1
     @Bean

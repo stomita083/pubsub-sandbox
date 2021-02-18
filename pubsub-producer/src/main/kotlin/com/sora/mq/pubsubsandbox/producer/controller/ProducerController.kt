@@ -15,6 +15,6 @@ class ProducerController(private val mqSender: MqSender) {
     
     @PostMapping
     fun produce() {
-        mqSender.produce()
+        mqSender.produceCharge()
     }
 }

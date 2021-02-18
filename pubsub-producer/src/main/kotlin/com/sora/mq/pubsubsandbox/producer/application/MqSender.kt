@@ -16,7 +16,8 @@ class MqSender(private val chargeAmqpTemplate: AmqpTemplate) {
         val message = ChargeMessage("user001", 1000, 100, "シネマチケット", "TICKET")
         log.info("START sending message: $message")
         //chargeAmqpTemplate.convertAndSend(message)
-        chargeAmqpTemplate.convertAndSend("exchange", "charge.create", message.toString())
+        //chargeAmqpTemplate.convertAndSend("exchange", "charge.create", message.toString())
+        chargeAmqpTemplate.convertAndSend("exchange.topic", "charge.*", message.toString())
         log.info("COMPLETE sending message: $message")
     }
 

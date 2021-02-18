@@ -91,6 +91,15 @@
             "arguments": {}
         },
         {
+            "name": "exchange.topic",
+            "vhost": "my-vhost",
+            "type": "topic",
+            "durable": true,
+            "auto_delete": false,
+            "internal": false,
+            "arguments": {}
+        },
+        {
             "name": "exchange.dead",
             "vhost": "my-vhost",
             "type": "fanout",
@@ -132,6 +141,30 @@
             "destination": "mail",
             "destination_type": "queue",
             "routing_key": "charge.mail",
+            "arguments": {}
+        },
+        {
+            "source": "exchange.topic",
+            "vhost": "my-vhost",
+            "destination": "charge",
+            "destination_type": "queue",
+            "routing_key": "charge.*",
+            "arguments": {}
+        },
+        {
+            "source": "exchange.topic",
+            "vhost": "my-vhost",
+            "destination": "point",
+            "destination_type": "queue",
+            "routing_key": "charge.*",
+            "arguments": {}
+        },
+        {
+            "source": "exchange.topic",
+            "vhost": "my-vhost",
+            "destination": "mail",
+            "destination_type": "queue",
+            "routing_key": "charge.*",
             "arguments": {}
         },
         {

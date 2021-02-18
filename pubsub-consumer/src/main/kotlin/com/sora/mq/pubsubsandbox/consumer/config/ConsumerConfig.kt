@@ -1,6 +1,5 @@
 package com.sora.mq.pubsubsandbox.consumer.config
 
-import org.springframework.amqp.core.Queue
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory
 import org.springframework.amqp.rabbit.connection.ConnectionFactory
@@ -12,22 +11,9 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor
 @Configuration
 class ConsumerConfig {
 
-    @Value("\${rabbitmq.charge.queue-name}")
-    var queueName: String? = null
-
-//    @Bean
-//    fun queue(): Queue {
-//        return Queue(queueName, true)
-//    }
-//
-//    @Bean
-//    fun dlqQueue(): Queue {
-//        return Queue("exchange.dead", true)
-//    }
-
     // Ref: https://blog.mookjp.io/memo/spring-amqp%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9/#message%E3%81%AE%E5%8F%97%E4%BF%A1
     @Bean
-    fun rabbitListenerContainerFactory(
+    fun chargeRabbitListenerContainerFactory(
     ): SimpleRabbitListenerContainerFactory {
         val factory = SimpleRabbitListenerContainerFactory()
         factory.setConnectionFactory(connectionFactory())

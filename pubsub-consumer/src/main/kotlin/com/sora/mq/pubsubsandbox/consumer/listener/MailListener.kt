@@ -13,8 +13,8 @@ class MailListener(private val mqConsumer: MqConsumer) {
     }
 
     @RabbitListener(
-        queues = ["\${rabbitmq.charge.queue-name:mail}"],
-        containerFactory = "rabbitListenerContainerFactory"
+        queues = ["\${rabbitmq.mail.queue-name:mail}"],
+        containerFactory = "chargeRabbitListenerContainerFactory"
     )
     fun listenMessage(@Payload message: String) {
         log.info("consume mail message: $log")

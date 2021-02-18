@@ -13,8 +13,8 @@ class PointListener(private val mqConsumer: MqConsumer) {
     }
 
     @RabbitListener(
-        queues = ["\${rabbitmq.charge.queue-name:point}"],
-        containerFactory = "rabbitListenerContainerFactory"
+        queues = ["\${rabbitmq.point.queue-name:point}"],
+        containerFactory = "chargeRabbitListenerContainerFactory"
     )
     fun listenMessage(@Payload message: String) {
         log.info("consume point message: $log")

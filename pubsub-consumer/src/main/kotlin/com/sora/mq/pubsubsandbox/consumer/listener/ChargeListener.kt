@@ -14,7 +14,7 @@ class ChargeListener(private val mqConsumer: MqConsumer) {
 
     @RabbitListener(
         queues = ["\${rabbitmq.charge.queue-name:charge}"],
-        containerFactory = "rabbitListenerContainerFactory"
+        containerFactory = "chargeRabbitListenerContainerFactory"
     )
     fun listenMessage(@Payload message: String) {
         log.info("consume charge message: $log")

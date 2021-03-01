@@ -11,20 +11,17 @@ class MqConsumer {
 
     fun consumeCharge(message: ChargeMessage) {
         log.info("START consuming userId: ${message.userId}, productIdAndChargeIds: ${message.productIdAndChargeIds}")
-        log.warn("charge data has created!!!")
-        log.info("COMPLETE consuming message: $message")
+        log.warn("Charge data has created!!!")
     }
 
     fun consumePoint(message: ChargeMessage) {
-        log.info("START consuming message: $message")
-        log.warn("point data has created!!!")
-        log.info("COMPLETE consuming message: $message")
+        log.info("START consuming userId: ${message.userId}, productIdAndChargeIds: ${message.productIdAndChargeIds}")
+        log.warn("Point data has created!!!")
     }
 
     fun consumeMail(message: ChargeMessage) {
-        log.info("START consuming message: $message")
-        log.warn("mail data has created!!!")
-        log.info("COMPLETE consuming message: $message")
+        log.info("START consuming userId: ${message.userId}, productIdAndChargeIds: ${message.productIdAndChargeIds}")
+        log.warn("Mail data has created!!!")
     }
 }
 

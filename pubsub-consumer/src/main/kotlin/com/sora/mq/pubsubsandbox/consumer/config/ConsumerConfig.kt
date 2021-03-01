@@ -12,7 +12,7 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor
 
 @Configuration
-class ConsumerConfig() {
+class ConsumerConfig {
 
     @Bean
     fun jsonMessageConverter(): Jackson2JsonMessageConverter {
@@ -22,9 +22,7 @@ class ConsumerConfig() {
 //            .dateFormat(StdDateFormat())
 //            .timeZone("Asia/Tokyo")
             .build<ObjectMapper>()
-        val ret = Jackson2JsonMessageConverter(objectMapper)
-        //ret.setCreateMessageIds(true)
-        return ret
+        return Jackson2JsonMessageConverter(objectMapper)
     }
 
     // Ref: https://blog.mookjp.io/memo/spring-amqp%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9/#message%E3%81%AE%E5%8F%97%E4%BF%A1

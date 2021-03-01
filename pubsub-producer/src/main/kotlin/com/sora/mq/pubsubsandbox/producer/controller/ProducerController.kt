@@ -9,12 +9,9 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/mq")
 class ProducerController(private val mqSender: MqSender) {
 
-    companion object {
-        val log = org.slf4j.LoggerFactory.getLogger(this::class.java.enclosingClass)!!
-    }
-    
     @PostMapping
-    fun produce() {
+    fun produce(): String {
         mqSender.produceCharge()
+        return "success"
     }
 }

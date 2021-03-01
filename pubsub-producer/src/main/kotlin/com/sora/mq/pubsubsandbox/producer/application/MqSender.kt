@@ -26,9 +26,8 @@ class MqSender(private val chargeAmqpTemplate: AmqpTemplate) {
                 , "TICKET")
      
         log.info("START sending message: $message")
-        log.info("chargeAmqpTemplate: $chargeAmqpTemplate")
         chargeAmqpTemplate.convertAndSend(message)
-        log.info("COMPLETE sending message: $message")
+        log.info("COMPLETE sending message")
     }
 
     /** charge */

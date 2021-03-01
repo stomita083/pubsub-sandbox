@@ -1,5 +1,6 @@
 package com.sora.mq.pubsubsandbox.consumer.listener
 
+import com.sora.mq.pubsubsandbox.consumer.application.ChargeMessage
 import com.sora.mq.pubsubsandbox.consumer.application.MqConsumer
 import org.springframework.amqp.rabbit.annotation.RabbitListener
 import org.springframework.messaging.handler.annotation.Payload
@@ -16,8 +17,8 @@ class MailListener(private val mqConsumer: MqConsumer) {
         queues = ["\${rabbitmq.mail.queue-name:mail}"],
         containerFactory = "chargeRabbitListenerContainerFactory"
     )
-    fun listenMessage(@Payload message: String) {
-        log.info("consume mail message: $log")
+    fun listenMessage(@Payload message: ChargeMessage) {
+        log.info("consume mail message: $message")
         mqConsumer.consumeMail(message)
     }
 }

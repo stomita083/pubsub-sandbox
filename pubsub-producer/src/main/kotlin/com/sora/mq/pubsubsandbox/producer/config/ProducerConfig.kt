@@ -4,7 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.fasterxml.jackson.databind.util.StdDateFormat
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import org.springframework.amqp.core.AmqpTemplate
+import org.springframework.amqp.rabbit.connection.ConnectionFactory
+import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter
+import org.springframework.amqp.support.converter.MessageConverter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder
@@ -25,16 +29,14 @@ class ProducerConfig {
         return ret
     }
 
-//    /** ChargeAmqpTemplate  */
-//    @Bean
-//    //@ConfigurationProperties(prefix = "rabbitmq.charge")
-//    fun chargeAmqpTemplate(val connectionFactory: ConnectionFactory): AmqpTemplate {
-//        //val connectionFactory: ConnectionFactory = SimpleRabbitListenerContainerFactory()
-//        val template = RabbitTemplate(connectionFactory)
-//        template.setExchange("charge")
-//        //template.routingKey("charge.create")
-//            //.messageConverter(jsonMessageConverter())
-//        //configurer.configureRabbitTemplate(template, connectionFactory)
-//        return template
-//    }
+    /** ChargeAmqpTemplate  */
+    @Bean
+    //@ConfigurationProperties(prefix = "rabbitmq.charge")
+    fun chargeAmqpTemplate(connectionFactory: ConnectionFactory): AmqpTemplate {
+        val template = RabbitTemplate(connectionFactory)
+        template.setExchange("exchange.topic")
+        template.routingKey = "charge.*"
+        template.messageConverter = jsonMessageConverter()
+        return template
+    }
 }
